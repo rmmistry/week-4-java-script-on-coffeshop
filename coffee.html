@@ -46,33 +46,79 @@
 
 <script>
 
-    // Set these 3 variables to their DOM elements
+    //commented out java script 
+    //Set these 3 variables to their DOM elements
+    //var myImage;
+    //var myRevenueMessage;
+    //use this dictionary in further study step
+    //var myImage = document.getElementById("coffee-image");
+    //var oldSrc = myImage.getAttribute('src');
+    //myImage.setAttribute("src", "static/coffee_beans.jpg");
+    //var myRevenueMessage = document.getElementById("revenue");
+    //myRevenueMessage.innerText = 'This is revenue message'
+    //This comes after our function!!!
+    //function changeImg(){
+        //myImage.setAttribute("src", "static/coffee_mug.jpg");
+    //}
+    //myImage.addEventListener('click', changeImg);
 
-    var myImage;
-    var myRevenueMessage;
+   // ___________________________________________________________
 
-    // use this dictionary in further study step
-
-    var myImage = document.getElementById("coffee-image");
-        // var oldSrc = myImage.getAttribute('src');
-        myImage.setAttribute("src", "static/coffee_beans.jpg");
-
-    var myRevenueMessage = document.getElementById("revenue");
-    myRevenueMessage.innerText = 'This is revenue message'
-
-//This comes after our function!!!
-    function changeImg(){
-        myImage.setAttribute("src", "static/coffee_mug.jpg");
-    }
-    myImage.addEventListener('click', changeImg);
-
-
+    //using jquery
     var prices = {
         "brew": 2.05,
         "espresso": 3.25,
         "latte": 4.15,
-        "hot chocolate": 2.50
-    };
+        "hot chocolate": 2.50};
+
+    var myImage = $("#coffee-image");
+    var myRevenueMessage = $(#"revenue");
+    var espresso = $("#espresso");
+    var latte = $("#latte");
+    var hotChocolate = $("#hot-chocolate");
+    var drinksOrdered = [];
+    var runningTotalRevenue = 0;
+
+    myImage.attr("src", "static/coffee_beans.jpg");
+
+    myRevenueMessage.html("$0.00");
+
+    function makeCoffee(drinkType){
+        console.log("drinkType: " + drinkType);
+        showCoffeeMaker();
+        setTimeout(showCoffeeMug, 3000);
+        setTimeout(showCoffeeBeans, 6000);
+        drinksOrdered.push(drinkType);
+        console.log("drinksOrdered: " + drinksOrdered);
+        calculateNewTotal(drinkType);
+    }
+
+    function showCoffeeMaker() {
+        myImage.fadeOut();
+        setTimeout(function() {muImage.attr("src", "static/coffee_machine.jpg")}, 400);
+        myImage.fadeIn();
+    }
+
+    function showCoffeeBeans() {
+        myImage.fadeOut();
+        setTimeout(function() {myImage.attr("src", "static/coffee_beans.jpg")}), 400);
+        myImage.fadeIn();
+    }
+
+    function showCoffeeMug() {
+        myImage.dateOut();
+        setTimeout(function() {myImage.attr("src", "static/coffee_mug.jpg")}), 400);
+        myImage.fadeIn();
+    }
+
+    function updateRevenueMessage(total){
+        myRevenueMessage.html("$" + total);
+    }
+
+    function calculateNewTotal(drinkType) {
+        price = prices[drinkType];
+        runningTotalRevenue +=price;
+    }
 
 
 </script>
